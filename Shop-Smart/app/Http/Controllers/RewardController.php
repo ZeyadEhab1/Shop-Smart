@@ -15,8 +15,10 @@ class RewardController extends Controller
     public function __invoke(): AnonymousResourceCollection
     {
 
-        $points = auth()->user()->userBalance;
-        $rewards = Reward::where('points', '<=', $points)->get();
+        $rewards = Reward::query()
+            ->where('is_available', true)
+            ->paginate();
+
         return RewardResource::collection($rewards);
 
     }
