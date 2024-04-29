@@ -7,14 +7,10 @@ use App\Models\LoyaltyWallet;
 
 class LoyaltyWalletController extends Controller
 {
-    public function __invoke()
+    public function __invoke(): LoyaltyWalletResource
     {
 
-        $loyaltyWallet = LoyaltyWallet::where('user_id', auth()->id())->first();
-
-        if ($loyaltyWallet->balance == 0 || $loyaltyWallet->balance === null) {
-            return response()->json(['message' => 'User have no points yet']);
-        }
+        $loyaltyWallet = LoyaltyWallet::firstOrCreate(['user_id'=> auth()->id()]);
         return new LoyaltyWalletResource($loyaltyWallet);
 
     }
