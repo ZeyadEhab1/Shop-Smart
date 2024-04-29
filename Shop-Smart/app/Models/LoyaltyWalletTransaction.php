@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class LoyaltyWalletTransactionController extends Authenticatable {
+class LoyaltyWalletTransaction extends Authenticatable {
 
 	protected $fillable = array('loyalty_wallet_id', 'balance_before', 'amount', 'type', 'balance_after', 'description');
 
@@ -27,7 +27,7 @@ class LoyaltyWalletTransactionController extends Authenticatable {
     }
 	public function redeems(): HasMany
     {
-		return $this->hasMany('Redeem', 'transaction_id');
+		return $this->hasMany(Redeem::class);
 	}
 
 }

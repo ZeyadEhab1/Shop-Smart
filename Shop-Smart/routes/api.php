@@ -3,8 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoyaltyWalletController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\RedeemController;
 use App\Http\Controllers\RewardController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +25,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/loyalty-wallet', LoyaltyWalletController::class);
     Route::post('/purchases', PurchaseController::class);
     Route::get('/rewards', RewardController::class);
+    Route::get('/rewards/redeem', RedeemController::class);
 
 });
