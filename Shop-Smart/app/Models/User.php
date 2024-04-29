@@ -8,27 +8,32 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
- {
+{
     use HasApiTokens;
 
-	protected $fillable = array('name', 'password', 'profile_pic', 'phone', 'email');
+    protected $fillable = array('name', 'password', 'profile_pic', 'phone', 'email');
 
-	public function addresses():HasMany
+    public function addresses(): HasMany
     {
         return $this->hasMany(Address::class);
-	}
+    }
 
-	public function purchases(): HasMany
+    public function purchases(): HasMany
     {
         return $this->hasMany(Purchase::class);
-	}
+    }
 
-	public function loyaltyWallet(): HasOne
+    public function loyaltyWallet(): HasOne
     {
         return $this->hasOne(LoyaltyWallet::class);
-	}
+    }
 
-    public function getUserBalanceAttribute (){
+    protected $casts = [
+        'password' => 'hashed'
+    ];
+
+    public function getUserBalanceAttribute()
+    {
         return $this->loyaltyWallet->balance;
     }
 }
