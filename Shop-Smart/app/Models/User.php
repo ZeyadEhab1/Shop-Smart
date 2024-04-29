@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -28,10 +27,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(LoyaltyWallet::class);
     }
+
     public function redeems(): HasMany
     {
         return $this->hasMany(Redeem::class);
     }
+
     protected $casts = [
         'password' => 'hashed'
     ];

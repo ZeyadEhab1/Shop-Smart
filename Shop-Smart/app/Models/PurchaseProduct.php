@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class PurchaseProduct extends Authenticatable {
+class PurchaseProduct extends Model
+{
 
-	protected $fillable = array('purchase_id', 'product_id', 'quantity');
+    protected $fillable = array('purchase_id', 'product_id', 'quantity');
 
 }
