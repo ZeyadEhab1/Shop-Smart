@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class LoyaltyWalletTransaction extends Authenticatable {
+class LoyaltyWalletTransaction extends Model
+{
 
-	protected $fillable = array('loyalty_wallet_id', 'balance_before', 'amount', 'type', 'balance_after', 'description');
+    protected $fillable = array('loyalty_wallet_id', 'balance_before', 'amount', 'type', 'balance_after', 'description');
 
-	public function wallet(): HasOne
+    public function wallet(): HasOne
     {
-		return $this->hasOne(LoyaltyWallet::class);
-	}
+        return $this->hasOne(LoyaltyWallet::class);
+    }
 
     public function product(): BelongsTo
     {
@@ -25,9 +26,10 @@ class LoyaltyWalletTransaction extends Authenticatable {
     {
         return $this->belongsTo(Reward::class);
     }
-	public function redeems(): HasMany
+
+    public function redeems(): HasMany
     {
-		return $this->hasMany(Redeem::class);
-	}
+        return $this->hasMany(Redeem::class);
+    }
 
 }

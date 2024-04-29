@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Redeem extends Authenticatable {
+class Redeem extends Model
+{
 
-	protected $fillable = array('loyalty_wallet_transaction_id', 'reward_id', 'product_id', 'user_id');
+    protected $fillable = array('loyalty_wallet_transaction_id', 'reward_id', 'product_id', 'user_id');
 
     public function transaction(): BelongsTo
     {
@@ -18,14 +19,15 @@ class Redeem extends Authenticatable {
     {
         return $this->belongsTo(User::class);
     }
+
     public function reward(): BelongsTo
     {
-		return $this->belongsTo(Reward::class);
-	}
+        return $this->belongsTo(Reward::class);
+    }
 
-	public function product(): BelongsTo
+    public function product(): BelongsTo
     {
-		return $this->belongsTo(Product::class);
-	}
+        return $this->belongsTo(Product::class);
+    }
 
 }
