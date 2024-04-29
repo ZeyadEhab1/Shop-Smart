@@ -4,19 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PurchaseResource;
 use App\Models\Purchase;
+use App\Queries\PurchaseQuery;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
-
     public function __invoke(Request $request): AnonymousResourceCollection
     {
-        $userId = $request->user()->id;
+
         $purchases = Purchase::with(['products', 'address'])
-            ->where('user_id', $userId)
-            ->get();
+            ->where('user_id', )
+            ->byDate($request->input('start_date'), $request->input('end_date'))
+            ->sortBy($request->input('sort_by'), $request->input('sort_order', 'asc'))
+            ->paginate();
 
         return PurchaseResource::collection($purchases);
     }

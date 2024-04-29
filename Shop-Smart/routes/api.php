@@ -23,7 +23,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/loyalty-wallet', LoyaltyWalletController::class);
-    Route::get('/purchases', PurchaseController::class);
+    Route::post('/purchases', PurchaseController::class);
     Route::get('/rewards', RewardController::class);
 
 });

@@ -2,13 +2,19 @@
 
 namespace App\Models;
 
+use App\Queries\PurchaseQuery;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Purchase extends Authenticatable {
+class Purchase extends Model {
 
 	protected $fillable = array('user_id', 'address_id', 'total_price');
+
+    public function newEloquentBuilder($query): PurchaseQuery
+    {
+        return new PurchaseQuery($query);
+    }
 
 	public function user(): BelongsTo
     {
