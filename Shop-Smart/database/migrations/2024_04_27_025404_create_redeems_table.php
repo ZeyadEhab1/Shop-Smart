@@ -12,6 +12,7 @@ return new class extends Migration {
 			$table->foreignId('loyalty_wallet_transaction_id')->constrained()->cascadeOnDelete()->unsigned();
 			$table->foreignId('reward_id')->constrained()->cascadeOnDelete()->unsigned();
 			$table->foreignId('user_id')->constrained()->cascadeOnDelete()->unsigned();
+            $table->timestamp('redeemed_at')->nullable();
             $table->timestamps();
         });
 	}

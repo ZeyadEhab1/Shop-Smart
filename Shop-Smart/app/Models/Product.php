@@ -16,6 +16,6 @@ class Product extends Authenticatable {
 	}
     public function transactions(): HasMany
     {
-        return $this->hasMany(LoyaltyWalletTransactionController::class);
+        return $this->hasMany(LoyaltyWalletTransaction::class);
     }
 }
