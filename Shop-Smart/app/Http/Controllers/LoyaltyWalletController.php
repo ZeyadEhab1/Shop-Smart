@@ -10,7 +10,7 @@ class LoyaltyWalletController extends Controller
     public function __invoke(): LoyaltyWalletResource
     {
 
-        $loyaltyWallet = LoyaltyWallet::firstOrCreate(['user_id'=> auth()->id()]);
+        $loyaltyWallet = auth()->user()->loyaltyWallet()->firstOrCreate();
         return new LoyaltyWalletResource($loyaltyWallet);
 
     }
