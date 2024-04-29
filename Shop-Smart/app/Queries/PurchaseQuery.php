@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Queries;
+
 use Illuminate\Database\Eloquent\Builder;
 
 class PurchaseQuery extends Builder
