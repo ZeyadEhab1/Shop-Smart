@@ -26,7 +26,6 @@ class PurchaseQuery extends Builder
         }
         return $this;
     }
-
     public function sortBy(?string $sortBy, string $sortOrder = 'asc')
     {
         if ($sortBy) {
