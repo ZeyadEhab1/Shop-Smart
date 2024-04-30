@@ -14,6 +14,7 @@ class PurchaseQuery extends Builder
         }
         return $this;
     }
+
     public function byAmount(?float $minAmount, ?float $maxAmount): PurchaseQuery
     {
         if ($minAmount !== null && $maxAmount !== null) {
