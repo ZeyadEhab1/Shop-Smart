@@ -17,6 +17,7 @@ class PurchaseController extends Controller
         $purchases = Purchase::with(['products', 'address'])
             ->where('user_id', auth()->id())
             ->byDate($request->input('start_date'), $request->input('end_date'))
+            ->byAmount($request->input('min_amount'), $request->input('max_amount'))
             ->sortBy($request->input('sort_by'), $request->input('sort_order', 'asc'))
             ->paginate();
 
