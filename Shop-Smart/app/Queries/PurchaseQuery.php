@@ -14,7 +14,17 @@ class PurchaseQuery extends Builder
         }
         return $this;
     }
-
+    public function byAmount(?float $minAmount, ?float $maxAmount): PurchaseQuery
+    {
+        if ($minAmount !== null && $maxAmount !== null) {
+            return $this->whereBetween('total_price', [$minAmount, $maxAmount]);
+        } elseif ($minAmount !== null) {
+            return $this->where('total_price', '>=', $minAmount);
+        } elseif ($maxAmount !== null) {
+            return $this->where('total_price', '<=', $maxAmount);
+        }
+        return $this;
+    }
     public function sortBy(?string $sortBy, string $sortOrder = 'asc')
     {
         if ($sortBy) {
