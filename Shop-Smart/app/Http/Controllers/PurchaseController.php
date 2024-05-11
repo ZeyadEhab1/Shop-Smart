@@ -13,7 +13,6 @@ class PurchaseController extends Controller
 {
     public function __invoke(Request $request): AnonymousResourceCollection
     {
-
         $purchases = Purchase::with(['products', 'address'])
             ->where('user_id', auth()->id())
             ->byDate($request->input('start_date'), $request->input('end_date'))
